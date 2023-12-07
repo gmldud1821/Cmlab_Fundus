@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Capture"
+    android:background="@drawable/background">
+
+
+<!-- <com.example.fundus.CameraSurfaceView
+     android:id="@+id/camera_surfaceView"
+     android:layout_width="match_parent"
+     android:layout_height="500dp"
+     android:text="Hello World!"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.0"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintVertical_bias="0.263" />-->
+
+
+    <TextView
+        android:id="@+id/patient_info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Patient Info"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.119"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <FrameLayout
+        android:id="@+id/camera_surfaceView"
+        android:layout_width="fill_parent"
+        android:layout_height="550dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303"
+        tools:layout_editor_absoluteX="0dp"></FrameLayout>
+
+    <ImageView
+       android:id="@+id/ivBitmap"
+       android:layout_width="match_parent"
+       android:layout_height="570dp"
+       android:layout_gravity="center"
+       android:layout_marginTop="144dp"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <ToggleButton
+        android:id="@+id/single_toggle"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:textOff="single\ncapture"
+        android:textOn="single\ncapture"
+        android:checked="true"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ToggleButton
+        android:id="@+id/continuous_toggle"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:textOff="Continuous\ncapture"
+        android:textOn="Continuous\ncapture"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/capture_back_button"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_back"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ToggleButton
+        android:id="@+id/nir_toggle"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:checked="true"
+        android:textOff="Nir"
+        android:textOn="Nir"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ToggleButton
+        android:id="@+id/white_toggle"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:textOff="White"
+        android:textOn="White"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/motor_left_button"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_back"
+        android:text="Motor left"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.805" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/motor_right_button"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_back"
+        android:text="Motor right"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977" />
+
+    <TextView
+        android:id="@+id/led_value_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="LED VALUE"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/up_button"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_back"
+        android:text="Up"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.805" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/down_button"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_back"
+        android:text="Down"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977" />
+
+
+    <ToggleButton
+        android:id="@+id/left_toggle"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:checked="true"
+        android:textOff="Left\noff"
+        android:textOn="left\non"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.809" />
+
+    <ToggleButton
+        android:id="@+id/right_toggle"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:background="@drawable/togglebutton_background"
+        android:textOff="right\noff"
+        android:textOn="right\non"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.809" />
+
+    <ImageButton
+        android:id="@+id/capture_button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/camera_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977" />
+
+
+   <LinearLayout
+       android:id="@+id/llBottom"
+       android:layout_width="match_parent"
+       android:layout_height="300dp"
+       android:layout_marginBottom="52dp"
+       android:gravity="center"
+       android:orientation="horizontal"
+       android:visibility="gone"
+       android:weightSum="2"
+       android:background="@color/black"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent">
+
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnReject"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="0.5"
+          android:src="@drawable/ic_close"
+          android:layout_marginRight="100dp"
+          app:backgroundTint="@color/rejectedRed"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnAccept"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_weight="0.5"
+          android:src="@drawable/ic_check"
+          app:backgroundTint="@color/acceptedGreen"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />
+
+
+   </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
