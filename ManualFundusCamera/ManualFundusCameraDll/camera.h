@@ -3,6 +3,12 @@
 #include <Windows.h>
 #include <opencv2/opencv.hpp>
 
+#ifdef _DEBUG
+#pragma comment(lib, "opencv_world440d.lib")
+#else
+#pragma comment(lib, "opencv_world440.lib")
+#endif
+
 #define NumberOfCameras 2
 
 enum class Part { Retina, Cornea };

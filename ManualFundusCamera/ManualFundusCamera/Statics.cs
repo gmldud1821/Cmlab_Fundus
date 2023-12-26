@@ -14,9 +14,9 @@ namespace ManualFundusCamera
         public enum ErrorShowCameraFrame { None, CannotRead };
 
 #if DEBUG
-        private const string dllFileName = "..\\..\\x64\\Debug\\ManualFundusCameraDll.dll";
+        private const string dllFileName = @"..\..\..\x64\Debug\ManualFundusCameraDll.dll";
 #else
-        private const string dllFileName = "..\\..\\x64\\Release\\ManualFundusCameraDll.dll";
+        private const string dllFileName = @"..\..\..\x64\Release\ManualFundusCameraDll.dll";
 #endif
 
         [DllImport(dllFileName)]

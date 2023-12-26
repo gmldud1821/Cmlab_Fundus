@@ -36,6 +36,7 @@ namespace ManualFundusCamera
             Console.WriteLine(retinaCameraBorder.Width);
 
             cameraThread = new Thread(doCameraThread);
+            cameraThread.Start();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -45,15 +46,28 @@ namespace ManualFundusCamera
 
         private void doCameraThread()
         {
-            int retinaAreaX = (int)retinaCameraBorder.Margin.Left;
-            int retinaAreaY = (int)retinaCameraBorder.Margin.Top;
-            int retinaAreaWidth = (int)retinaCameraBorder.Width;
-            int retinaAreaHeight = (int)retinaCameraBorder.Height;
+            int retinaAreaX = 0;
+            int retinaAreaY = 0;
+            int retinaAreaWidth = 0;
+            int retinaAreaHeight = 0;
 
-            int corneaAreaX = (int)corneaCameraBorder.Margin.Left;
-            int corneaAreaY = (int)corneaCameraBorder.Margin.Top;
-            int corneaAreaWidth = (int)corneaCameraBorder.Width;
-            int corneaAreaHeight = (int)corneaCameraBorder.Height;
+            int corneaAreaX = 0;
+            int corneaAreaY = 0;
+            int corneaAreaWidth = 0;
+            int corneaAreaHeight = 0;
+
+            Dispatcher.Invoke(() =>
+            {
+                retinaAreaX = (int)retinaCameraBorder.Margin.Left;
+                retinaAreaY = (int)retinaCameraBorder.Margin.Top;
+                retinaAreaWidth = (int)retinaCameraBorder.Width;
+                retinaAreaHeight = (int)retinaCameraBorder.Height;
+
+                corneaAreaX = (int)corneaCameraBorder.Margin.Left;
+                corneaAreaY = (int)corneaCameraBorder.Margin.Top;
+                corneaAreaWidth = (int)corneaCameraBorder.Width;
+                corneaAreaHeight = (int)corneaCameraBorder.Height;
+            });
 
             shallExitThread = false;
 
