@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         Title="카메라 창" Height="800" Width="1500" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
-        <Border x:Name="retinaCameraBorder" Height="480" Width="640" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Aqua">
+        <Border x:Name="retinaCameraBorder" Height="480" Width="640" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
             <Image Stretch="Fill"/>
         </Border>
-        <Border x:Name="corneaCameraBorder" Height="480" Width="640" Margin="660,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Aqua">
-            <Image x:Name="corneaCameraImage" Stretch="Fill"/>
+        <Border x:Name="corneaCameraBorder" Height="480" Width="640" Margin="660,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
+            <Image Stretch="Fill"/>
         </Border>
-        <Button x:Name="closeButton" Content="종료" HorizontalAlignment="Left" Margin="160,600,0,0" VerticalAlignment="Top" Width="262" Height="112" Click="closeButton_Click"/>
+        <Button x:Name="closeButton" Content="종료" HorizontalAlignment="Left" Margin="160,600,0,0" VerticalAlignment="Top" Width="262" Height="112" Click="Button_Click"/>
+        <Button x:Name="shotButton" Content="촬영" HorizontalAlignment="Left" Margin="427,600,0,0" VerticalAlignment="Top" Width="262" Height="112" Click="Button_Click"/>
+        <Label Content="망막카메라" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,495,0,0" VerticalAlignment="Top" Width="640"/>
+        <Label Content="각막카메라" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="660,495,0,0" VerticalAlignment="Top" Width="640"/>
     </Grid>
 </Window>

@@ -94,16 +94,23 @@ namespace ManualFundusCamera
             Statics.closeWindow();
         }
 
-        // 종료 버튼을 누르면 종료한다.
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         // 프로그램 종료시 카메라 루프에서 빠져나온다.
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             shallExitThread = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender == closeButton)
+            {
+                // 종료 버튼을 누르면 프로그램을 종료한다.
+                Close();
+            }
+            else if (sender == shotButton)
+            {
+
+            }
         }
     }
 }
