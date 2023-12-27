@@ -39,8 +39,11 @@ namespace ManualFundusCamera
             InitializeComponent();
         }
 
+        // 프로그램 시작할 때 실행하는 메소드
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // 카메라 영상을 출력하는 영역 정보
+
             retinaAreaX = (int)retinaCameraBorder.Margin.Left;
             retinaAreaY = (int)retinaCameraBorder.Margin.Top;
             retinaAreaWidth = (int)retinaCameraBorder.Width;
@@ -51,8 +54,10 @@ namespace ManualFundusCamera
             corneaAreaWidth = (int)corneaCameraBorder.Width;
             corneaAreaHeight = (int)corneaCameraBorder.Height;
 
+            // 카메라 영상을 출력할 윈도우. 즉 현재 윈도우
             windowHandle = new WindowInteropHelper(this).Handle;
 
+            // 카메라를 작동시키는 스레드
             cameraThread = new Thread(doCameraThread);
             cameraThread.Start();
         }
@@ -69,6 +74,7 @@ namespace ManualFundusCamera
 
             Statics.initializeWindow(windowHandle);
 
+            // 루프를 돌며 카메라 영상을 출력한다.
             while (!shallExitThread)
             {
                 Statics.ErrorShowCameraFrame errorShowCameraFrame = Statics.showCameraFrame(Statics.Part.Retina, retinaAreaX, retinaAreaY, retinaAreaWidth, retinaAreaHeight);
@@ -88,11 +94,13 @@ namespace ManualFundusCamera
             Statics.closeWindow();
         }
 
+        // 종료 버튼을 누르면 종료한다.
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        // 프로그램 종료시 카메라 루프에서 빠져나온다.
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             shallExitThread = true;

@@ -16,6 +16,7 @@ enum class Part { Retina, Cornea };
 enum class ErrorInitializeCameras { None, NotOpen };
 enum class ErrorShowCameraFrame { None, CannotRead };
 
+// C#에서 활용할 함수들
 extern "C"
 {
 	__declspec(dllexport) ErrorInitializeCameras initializeCameras();
