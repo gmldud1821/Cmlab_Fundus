@@ -7,6 +7,11 @@ HWND windowHandle;
 HDC windowDc;
 BITMAPINFO bitmapInfo;
 
+HWND shotWindowHandle;
+HDC shotWindowDc;
+
+cv::Mat frame;
+
 /// <summary>
 /// 카메라 열기
 /// </summary>
@@ -76,14 +81,13 @@ void closeWindow()
 /// <returns>에러 여부</returns>
 ErrorShowCameraFrame showCameraFrame(Part part, int x, int y, int width, int height)
 {
-	cv::Mat frame;
 	bool ret = cameras[(int)part]->read(frame);
 	if (!ret)
 	{
 		return ErrorShowCameraFrame::CannotRead;
 	}
 
-	showImage(frame, x, y, width, height);
+	showImage(frame, x, y, width, height, windowDc);
 
 	return ErrorShowCameraFrame::None;
 }
@@ -98,7 +102,7 @@ ErrorShowCameraFrame showCameraFrame(Part part, int x, int y, int width, int hei
 void clearImage(int x, int y, int width, int height)
 {
 	cv::Mat blackImage(height, width, CV_8UC3, cv::Scalar(0, 0, 0));
-	showImage(blackImage, x, y, width, height);
+	showImage(blackImage, x, y, width, height, windowDc);
 }
 
 /// <summary>
@@ -109,7 +113,7 @@ void clearImage(int x, int y, int width, int height)
 /// <param name="y">출력할 영역의 왼쪽 위 꼭짓점의 y좌표</param>
 /// <param name="width">출력할 영역의 가로 길이</param>
 /// <param name="height">출력할 영역의 세로 길이</param>
-void showImage(cv::Mat& image, int x, int y, int width, int height)
+void showImage(cv::Mat& image, int x, int y, int width, int height, HDC windowDc)
 {
 	HDC memoryDc = CreateCompatibleDC(windowDc);
 	HBITMAP imageBitmap = CreateDIBitmap(windowDc, &bitmapInfo.bmiHeader, CBM_INIT, image.data, &bitmapInfo, DIB_RGB_COLORS);
@@ -122,4 +126,21 @@ void showImage(cv::Mat& image, int x, int y, int width, int height)
 	SelectObject(memoryDc, oldBitmap);
 	DeleteObject(imageBitmap);
 	DeleteDC(memoryDc);
+}
+
+void captureImage(int x, int y, int width, int height)
+{
+	showImage(frame, x, y, width, height, shotWindowDc);
+}
+
+void initializeShotWindow(HWND windowHandle)
+{
+	::shotWindowHandle = windowHandle;
+	shotWindowDc = GetDC(windowHandle);
+	SetStretchBltMode(shotWindowDc, COLORONCOLOR);
+}
+
+void closeShotWindow()
+{
+	ReleaseDC(shotWindowHandle, shotWindowDc);
 }

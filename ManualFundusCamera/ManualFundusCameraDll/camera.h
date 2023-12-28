@@ -25,6 +25,9 @@ extern "C"
 	__declspec(dllexport) void closeWindow();
 	__declspec(dllexport) ErrorShowCameraFrame showCameraFrame(Part part, int x, int y, int width, int height);
 	__declspec(dllexport) void clearImage(int x, int y, int width, int height);
+	__declspec(dllexport) void captureImage(int x, int y, int width, int height);
+	__declspec(dllexport) void initializeShotWindow(HWND windowHandle);
+	__declspec(dllexport) void closeShotWindow();
 }
 
-void showImage(cv::Mat& image, int x, int y, int width, int height);
+void showImage(cv::Mat& image, int x, int y, int width, int height, HDC windowDc);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManualFundusCamera"
         mc:Ignorable="d"
-        Title="ShotWindow" Height="600" Width="1400">
+        Title="ShotWindow" Height="600" Width="1400" Loaded="Window_Loaded">
     <Grid>
         <Border x:Name="rawImageBorder" Height="480" Width="640" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
             <Image Stretch="Fill"/>

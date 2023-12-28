@@ -68,5 +68,14 @@ namespace ManualFundusCamera
         /// <param name="height">지울 영역의 세로 길이</param>
         [DllImport(dllFileName)]
         extern public static void clearImage(int x, int y, int width, int height);
+
+        [DllImport(dllFileName)]
+        extern public static void captureImage(int x, int y, int width, int height);
+
+        [DllImport(dllFileName)]
+        extern public static void initializeShotWindow(IntPtr windowHandle);
+
+        [DllImport(dllFileName)]
+        extern public static void closeShotWindow();
     }
 }

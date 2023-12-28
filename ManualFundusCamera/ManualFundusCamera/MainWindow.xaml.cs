@@ -22,6 +22,8 @@ namespace ManualFundusCamera
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ShotWindow shotWindow;
+
         private Thread cameraThread;
         private bool shallExitThread;
         private int retinaAreaX;
@@ -42,6 +44,9 @@ namespace ManualFundusCamera
         // 프로그램 시작할 때 실행하는 메소드
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            shotWindow = new ShotWindow(this);
+            shotWindow.Show();
+
             // 카메라 영상을 출력하는 영역 정보
 
             retinaAreaX = (int)retinaCameraBorder.Margin.Left;
@@ -73,6 +78,7 @@ namespace ManualFundusCamera
             }
 
             Statics.initializeWindow(windowHandle);
+            Statics.initializeShotWindow(shotWindow.windowHandle);
 
             // 루프를 돌며 카메라 영상을 출력한다.
             while (!shallExitThread)
@@ -92,12 +98,14 @@ namespace ManualFundusCamera
 
             Statics.closeCameras();
             Statics.closeWindow();
+            Statics.closeShotWindow();
         }
 
         // 프로그램 종료시 카메라 루프에서 빠져나온다.
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             shallExitThread = true;
+            shotWindow.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -109,7 +117,7 @@ namespace ManualFundusCamera
             }
             else if (sender == shotButton)
             {
-
+                Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight);
             }
         }
     }
