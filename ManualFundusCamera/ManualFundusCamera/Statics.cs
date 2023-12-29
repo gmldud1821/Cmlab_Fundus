@@ -10,7 +10,7 @@ namespace ManualFundusCamera
     public static class Statics
     {
         public enum Part { Retina, Cornea };
-        public enum ErrorInitializeCameras { None, NotOpen };
+        public enum ErrorInitializeCameras { None, RetinaNotOpen, CorneaNotOpen };
         public enum ErrorShowCameraFrame { None, CannotRead };
 
         // C++로 만든 dll에 있는 함수들을 불러온다.
@@ -37,9 +37,10 @@ namespace ManualFundusCamera
         /// <summary>
         /// 카메라 영상을 출력할 윈도우 열기
         /// </summary>
-        /// <param name="windowHandle">윈도우 핸들</param>
+        /// <param name="windowHandle">카메라 영상을 출력할 윈도우 핸들</param>
+        /// <param name="shotWindowHandle">캡처한 이미지를 출력할 윈도우 핸들</param>
         [DllImport(dllFileName)]
-        extern public static void initializeWindow(IntPtr windowHandle);
+        extern public static void initializeWindow(IntPtr windowHandle, IntPtr shotWindowHandle);
 
         /// <summary>
         /// 카메라 영상을 출력하는 윈도우 닫기
@@ -76,20 +77,11 @@ namespace ManualFundusCamera
         /// <param name="y">캡처한 이미지를 출력할 영역의 y좌표</param>
         /// <param name="width">캡처한 이미지를 출력할 영역의 가로 길이</param>
         /// <param name="height">캡처한 이미지를 출력할 영역의 세로 길이</param>
+        /// <param name="pX">처리한 이미지를 출력할 영역의 왼쪽 위 꼭짓점 x좌표</param>
+        /// <param name="pY">처리한 이미지를 출력할 영역의 왼쪽 위 꼭짓점 y좌표</param>
+        /// <param name="pWidth">처리한 이미지를 출력할 영역의 가로 길이</param>
+        /// <param name="pHeight">처리한 이미지를 출력할 영역의 세로 길이</param>
         [DllImport(dllFileName)]
-        extern public static void captureImage(int x, int y, int width, int height);
-
-        /// <summary>
-        /// 캡처한 이미지를 출력할 윈도우 열기
-        /// </summary>
-        /// <param name="windowHandle">윈도우 핸들</param>
-        [DllImport(dllFileName)]
-        extern public static void initializeShotWindow(IntPtr windowHandle);
-
-        /// <summary>
-        /// 캡처한 이미지를 출력한 윈도우 해제
-        /// </summary>
-        [DllImport(dllFileName)]
-        extern public static void closeShotWindow();
+        extern public static void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight);
     }
 }

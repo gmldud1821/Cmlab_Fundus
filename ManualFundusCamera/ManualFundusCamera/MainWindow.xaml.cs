@@ -26,6 +26,7 @@ namespace ManualFundusCamera
 
         private Thread cameraThread;
         private bool shallExitThread;
+        private bool shallCapture;
         private int retinaAreaX;
         private int retinaAreaY;
         private int retinaAreaWidth;
@@ -70,6 +71,7 @@ namespace ManualFundusCamera
         private void doCameraThread()
         {
             shallExitThread = false;
+            shallCapture = false;
 
             Statics.ErrorInitializeCameras errorInitializeCameras = Statics.initializeCameras();
             if (errorInitializeCameras != Statics.ErrorInitializeCameras.None)
@@ -77,8 +79,7 @@ namespace ManualFundusCamera
                 Console.WriteLine(errorInitializeCameras);
             }
 
-            Statics.initializeWindow(windowHandle);
-            Statics.initializeShotWindow(shotWindow.windowHandle);
+            Statics.initializeWindow(windowHandle, shotWindow.windowHandle);
 
             // 루프를 돌며 카메라 영상을 출력한다.
             while (!shallExitThread)
@@ -94,18 +95,23 @@ namespace ManualFundusCamera
                 {
                     Console.WriteLine(errorShowCameraFrame);
                 }
+
+                if (shallCapture)
+                {
+                    Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight, shotWindow.processedImageAreaX, shotWindow.processedImageAreaY, shotWindow.processedImageAreaWidth, shotWindow.processedImageAreaHeight);
+                    shallCapture = false;
+                }
             }
 
             Statics.closeCameras();
             Statics.closeWindow();
-            Statics.closeShotWindow();
         }
 
         // 프로그램 종료시 카메라 루프에서 빠져나온다.
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             shallExitThread = true;
-            shotWindow.Close();
+            Application.Current.Shutdown();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -118,7 +124,7 @@ namespace ManualFundusCamera
             else if (sender == shotButton)
             {
                 // 촬영 버튼을 누르면 망막 카메라를 캡처한다.
-                Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight);
+                shallCapture = true;
             }
         }
     }

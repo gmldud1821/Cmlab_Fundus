@@ -55,5 +55,10 @@ namespace ManualFundusCamera
             // 윈도우 핸들
             windowHandle = new WindowInteropHelper(this).Handle;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
