@@ -69,12 +69,26 @@ namespace ManualFundusCamera
         [DllImport(dllFileName)]
         extern public static void clearImage(int x, int y, int width, int height);
 
+        /// <summary>
+        /// 이미지 캡처
+        /// </summary>
+        /// <param name="x">캡처한 이미지를 출력할 영역의 x좌표</param>
+        /// <param name="y">캡처한 이미지를 출력할 영역의 y좌표</param>
+        /// <param name="width">캡처한 이미지를 출력할 영역의 가로 길이</param>
+        /// <param name="height">캡처한 이미지를 출력할 영역의 세로 길이</param>
         [DllImport(dllFileName)]
         extern public static void captureImage(int x, int y, int width, int height);
 
+        /// <summary>
+        /// 캡처한 이미지를 출력할 윈도우 열기
+        /// </summary>
+        /// <param name="windowHandle">윈도우 핸들</param>
         [DllImport(dllFileName)]
         extern public static void initializeShotWindow(IntPtr windowHandle);
 
+        /// <summary>
+        /// 캡처한 이미지를 출력한 윈도우 해제
+        /// </summary>
         [DllImport(dllFileName)]
         extern public static void closeShotWindow();
     }

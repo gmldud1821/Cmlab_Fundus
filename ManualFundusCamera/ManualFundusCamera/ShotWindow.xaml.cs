@@ -40,6 +40,8 @@ namespace ManualFundusCamera
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // 캡처한 이미지를 출력할 영역 정보
+
             rawImageAreaX = (int)rawImageBorder.Margin.Left;
             rawImageAreaY = (int)rawImageBorder.Margin.Top;
             rawImageAreaWidth = (int)rawImageBorder.Width;
@@ -50,6 +52,7 @@ namespace ManualFundusCamera
             processedImageAreaWidth = (int)processedImageBorder.Width;
             processedImageAreaHeight = (int)processedImageBorder.Height;
 
+            // 윈도우 핸들
             windowHandle = new WindowInteropHelper(this).Handle;
         }
     }

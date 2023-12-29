@@ -113,6 +113,7 @@ void clearImage(int x, int y, int width, int height)
 /// <param name="y">출력할 영역의 왼쪽 위 꼭짓점의 y좌표</param>
 /// <param name="width">출력할 영역의 가로 길이</param>
 /// <param name="height">출력할 영역의 세로 길이</param>
+/// <param name="windowDc">출력할 윈도우의 DC</param>
 void showImage(cv::Mat& image, int x, int y, int width, int height, HDC windowDc)
 {
 	HDC memoryDc = CreateCompatibleDC(windowDc);
@@ -128,11 +129,22 @@ void showImage(cv::Mat& image, int x, int y, int width, int height, HDC windowDc
 	DeleteDC(memoryDc);
 }
 
+/// <summary>
+/// 이미지 캡처
+/// </summary>
+/// <param name="x">캡처한 이미지를 출력할 영역의 왼쪽 위 꼭짓점 x좌표</param>
+/// <param name="y">캡처한 이미지를 출력할 영역의 왼쪽 위 꼭짓점 y좌표</param>
+/// <param name="width">캡처한 이미지를 출력할 영역의 가로 길이</param>
+/// <param name="height">캡처한 이미지를 출력할 영역의 세로 길이</param>
 void captureImage(int x, int y, int width, int height)
 {
 	showImage(frame, x, y, width, height, shotWindowDc);
 }
 
+/// <summary>
+/// 캡처한 이미지를 출력할 윈도우 가져오기
+/// </summary>
+/// <param name="windowHandle">윈도우 핸들</param>
 void initializeShotWindow(HWND windowHandle)
 {
 	::shotWindowHandle = windowHandle;
@@ -140,6 +152,9 @@ void initializeShotWindow(HWND windowHandle)
 	SetStretchBltMode(shotWindowDc, COLORONCOLOR);
 }
 
+/// <summary>
+/// 캡처한 이미지를 출력한 윈도우 해제
+/// </summary>
 void closeShotWindow()
 {
 	ReleaseDC(shotWindowHandle, shotWindowDc);

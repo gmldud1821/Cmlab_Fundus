@@ -117,6 +117,7 @@ namespace ManualFundusCamera
             }
             else if (sender == shotButton)
             {
+                // 촬영 버튼을 누르면 망막 카메라를 캡처한다.
                 Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight);
             }
         }
