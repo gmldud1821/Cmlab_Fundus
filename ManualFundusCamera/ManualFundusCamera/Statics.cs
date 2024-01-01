@@ -9,6 +9,8 @@ namespace ManualFundusCamera
 {
     public static class Statics
     {
+        public delegate void UploadImage(string imageFile);
+
         public enum Part { Retina, Cornea };
         public enum ErrorInitializeCameras { None, RetinaNotOpen, CorneaNotOpen };
         public enum ErrorShowCameraFrame { None, CannotRead };
@@ -81,7 +83,12 @@ namespace ManualFundusCamera
         /// <param name="pY">처리한 이미지를 출력할 영역의 왼쪽 위 꼭짓점 y좌표</param>
         /// <param name="pWidth">처리한 이미지를 출력할 영역의 가로 길이</param>
         /// <param name="pHeight">처리한 이미지를 출력할 영역의 세로 길이</param>
+        /// <param name="fileName">처리한 이미지를 저장할 파일</param>
+        /// <param name="uploadImage">처리한 이미지를 서버에 전송하는 메소드</param>
         [DllImport(dllFileName)]
-        extern public static void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight);
+        extern public static void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight, string fileName, UploadImage uploadImage);
+
+        public const string urlForUploadingImage = "http://175.112.57.221:1114/addRetinaImage";
+        public const string imageFileBoundary = "**boundaryline**";
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZXing;
 
 namespace ManualFundusCamera
 {
@@ -59,6 +63,27 @@ namespace ManualFundusCamera
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public void uploadImage(string imageFile)
+        {
+            WebClient client = new WebClient();
+            byte[] responseArray = client.UploadFile(Statics.urlForUploadingImage, imageFile);
+            string response = Encoding.ASCII.GetString(responseArray);
+            response = response.Replace("\"", "");
+            string[] splittedResponse = response.Split(',');
+            string id = splittedResponse[0];
+            string url = splittedResponse[1];
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.QR_CODE;
+            Dispatcher.Invoke(() =>
+            {
+                writer.Options.Width = (int)qrImageBorder.Width;
+                writer.Options.Height = (int)qrImageBorder.Height;
+                Bitmap bitmap = writer.Write($"http://175.112.57.221:1114/getRetinaImage?id={id}&url={url}");
+                IntPtr hBitmap = bitmap.GetHbitmap();
+                qrImage.Source = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            });
         }
     }
 }
