@@ -36,6 +36,8 @@ namespace ManualFundusCamera
         public int processedImageAreaHeight;
         public IntPtr windowHandle;
 
+        public string imageFileName;
+
         public ShotWindow(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -65,25 +67,37 @@ namespace ManualFundusCamera
             Application.Current.Shutdown();
         }
 
-        public void uploadImage(string imageFile)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WebClient client = new WebClient();
-            byte[] responseArray = client.UploadFile(Statics.urlForUploadingImage, imageFile);
-            string response = Encoding.ASCII.GetString(responseArray);
-            response = response.Replace("\"", "");
-            string[] splittedResponse = response.Split(',');
-            string id = splittedResponse[0];
-            string url = splittedResponse[1];
-            BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
-            Dispatcher.Invoke(() =>
+            if (sender == uploadImageButton)
             {
-                writer.Options.Width = (int)qrImageBorder.Width;
-                writer.Options.Height = (int)qrImageBorder.Height;
-                Bitmap bitmap = writer.Write($"http://175.112.57.221:1114/getRetinaImage?id={id}&url={url}");
-                IntPtr hBitmap = bitmap.GetHbitmap();
-                qrImage.Source = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            });
+                // 업로드 버튼을 누르면 처리한 이미지를 서버로 전송하고, 서버로부터 ID와 비밀 URL을 받아서 QR 코드 생성
+                if (imageFileName == null)
+                {
+                    MessageBox.Show("촬영하지 않았습니다.");
+                }
+                else if (!File.Exists(imageFileName))
+                {
+                    MessageBox.Show("가장 최근에 촬영한 이미지 파일이 존재하지 않습니다.");
+                }
+                else
+                {
+                    WebClient client = new WebClient();
+                    byte[] responseArray = client.UploadFile(Statics.urlForUploadingImage, imageFileName);
+                    string response = Encoding.ASCII.GetString(responseArray);
+                    response = response.Replace("\"", "");
+                    string[] splittedResponse = response.Split(',');
+                    string id = splittedResponse[0];
+                    string url = splittedResponse[1];
+                    BarcodeWriter writer = new BarcodeWriter();
+                    writer.Format = BarcodeFormat.QR_CODE;
+                    writer.Options.Width = (int)qrImageBorder.Width;
+                    writer.Options.Height = (int)qrImageBorder.Height;
+                    Bitmap bitmap = writer.Write($"http://175.112.57.221:1114/getRetinaImage?id={id}&url={url}");
+                    IntPtr hBitmap = bitmap.GetHbitmap();
+                    qrImage.Source = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                }
+            }
         }
     }
 }

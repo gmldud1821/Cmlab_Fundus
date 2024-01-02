@@ -191,12 +191,10 @@ cv::Mat processImage(cv::Mat& img)
 /// <param name="pWidth">처리한 이미지를 출력할 영역의 가로 길이</param>
 /// <param name="pHeight">처리한 이미지를 출력할 영역의 세로 길이</param>
 /// <param name="fileName">처리한 이미지를 저장할 파일</param>
-/// <param name="uploadImage">처리한 이미지를 서버에 전송하는 함수</param>
-void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight, char* fileName, UploadImage uploadImage)
+void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight, char* fileName)
 {
 	cv::Mat processedImage = processImage(frame[(int)Part::Retina]);
 	cv::imwrite(fileName, processedImage);
-	uploadImage(fileName);
 
 	showImage(frame[(int)Part::Retina], x, y, width, height, shotWindowDc);
 	showImage(processedImage, pX, pY, pWidth, pHeight, shotWindowDc);

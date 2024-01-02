@@ -98,9 +98,10 @@ namespace ManualFundusCamera
 
                 if (shallCapture)
                 {
-                    string fileName = $"{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.jpg";
-                    Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight, shotWindow.processedImageAreaX, shotWindow.processedImageAreaY, shotWindow.processedImageAreaWidth, shotWindow.processedImageAreaHeight, fileName, shotWindow.uploadImage);
+                    shotWindow.imageFileName = $"{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.jpg";
+                    Statics.captureImage(shotWindow.rawImageAreaX, shotWindow.rawImageAreaY, shotWindow.rawImageAreaWidth, shotWindow.rawImageAreaHeight, shotWindow.processedImageAreaX, shotWindow.processedImageAreaY, shotWindow.processedImageAreaWidth, shotWindow.processedImageAreaHeight, shotWindow.imageFileName);
                     shallCapture = false;
+                    Thread.Sleep(1000);
                 }
             }
 
