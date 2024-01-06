@@ -206,6 +206,13 @@ void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidt
 	showImage(processedImage, pX, pY, pWidth, pHeight, shotWindowDc);
 }
 
+/// <summary>
+/// 카메라 파라메터 설정
+/// </summary>
+/// <param name="part">망막인지 각막인지</param>
+/// <param name="prop">파라메터 종류</param>
+/// <param name="value">파라메터 값</param>
+/// <returns>에러 여부</returns>
 ErrorSetCameraParam setCameraParam(Part part, cv::VideoCaptureProperties prop, int value)
 {
 	bool ret = cameras[(int)part].set(prop, value);
@@ -219,6 +226,12 @@ ErrorSetCameraParam setCameraParam(Part part, cv::VideoCaptureProperties prop, i
 	}
 }
 
+/// <summary>
+/// 카메라 파라메터 값 읽기
+/// </summary>
+/// <param name="part">망막인지 각막인지</param>
+/// <param name="prop">파라메터 종류</param>
+/// <returns>파라메터 값</returns>
 int getCameraParam(Part part, cv::VideoCaptureProperties prop)
 {
 	return cameras[(int)part].get(prop);

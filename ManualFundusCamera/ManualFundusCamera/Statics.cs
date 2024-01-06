@@ -139,9 +139,22 @@ namespace ManualFundusCamera
         [DllImport(dllFileName)]
         extern public static void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidth, int pHeight, string fileName);
 
+        /// <summary>
+        /// 카메라 파라메터 설정
+        /// </summary>
+        /// <param name="part">망막인지 각막인지</param>
+        /// <param name="prop">파라메터 종류</param>
+        /// <param name="value">파라메터 값</param>
+        /// <returns>에러 여부</returns>
         [DllImport(dllFileName)]
         extern public static ErrorSetCameraParam setCameraParam(Part part, VideoCaptureProperties prop, int value);
 
+        /// <summary>
+        /// 카메라 파라메터 값 읽기
+        /// </summary>
+        /// <param name="part">망막인지 각막인지</param>
+        /// <param name="prop">파라메터 종류</param>
+        /// <returns>파라메터 값</returns>
         [DllImport(dllFileName)]
         extern public static int getCameraParam(Part part, VideoCaptureProperties prop);
 
