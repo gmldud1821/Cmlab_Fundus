@@ -23,6 +23,7 @@ namespace ManualFundusCamera
     public partial class MainWindow : Window
     {
         private ShotWindow shotWindow;
+        private CameraParamWindow cameraParamWindow;
 
         private Thread cameraThread;
         private bool shallExitThread;
@@ -47,6 +48,9 @@ namespace ManualFundusCamera
         {
             shotWindow = new ShotWindow(this);
             shotWindow.Show();
+
+            cameraParamWindow = new CameraParamWindow(this);
+            cameraParamWindow.Show();
 
             // 카메라 영상을 출력하는 영역 정보
 

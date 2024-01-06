@@ -22,12 +22,18 @@ ErrorInitializeCameras initializeCameras()
 	{
 		return ErrorInitializeCameras::RetinaNotOpen;
 	}
+	cameras[(int)Part::Retina].set(cv::CAP_PROP_AUTOFOCUS, 0);
+	cameras[(int)Part::Retina].set(cv::CAP_PROP_AUTO_EXPOSURE, 0);
+	cameras[(int)Part::Retina].set(cv::CAP_PROP_AUTO_WB, 0);
 
 	cameras[(int)Part::Cornea].open(1, cv::CAP_DSHOW);
 	if (!cameras[(int)Part::Cornea].isOpened())
 	{
 		return ErrorInitializeCameras::CorneaNotOpen;
 	}
+	cameras[(int)Part::Cornea].set(cv::CAP_PROP_AUTOFOCUS, 0);
+	cameras[(int)Part::Cornea].set(cv::CAP_PROP_AUTO_EXPOSURE, 0);
+	cameras[(int)Part::Cornea].set(cv::CAP_PROP_AUTO_WB, 0);
 
 	return ErrorInitializeCameras::None;
 }
@@ -198,4 +204,22 @@ void captureImage(int x, int y, int width, int height, int pX, int pY, int pWidt
 
 	showImage(frame[(int)Part::Retina], x, y, width, height, shotWindowDc);
 	showImage(processedImage, pX, pY, pWidth, pHeight, shotWindowDc);
+}
+
+ErrorSetCameraParam setCameraParam(Part part, cv::VideoCaptureProperties prop, int value)
+{
+	bool ret = cameras[(int)part].set(prop, value);
+	if (ret)
+	{
+		return ErrorSetCameraParam::None;
+	}
+	else
+	{
+		return ErrorSetCameraParam::Failed;
+	}
+}
+
+int getCameraParam(Part part, cv::VideoCaptureProperties prop)
+{
+	return cameras[(int)part].get(prop);
 }

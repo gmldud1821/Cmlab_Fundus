@@ -65,10 +65,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CameraParamWindow.xaml.cs">
+      <DependentUpon>CameraParamWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShotWindow.xaml.cs">
       <DependentUpon>ShotWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Statics.cs" />
+    <Page Include="CameraParamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
