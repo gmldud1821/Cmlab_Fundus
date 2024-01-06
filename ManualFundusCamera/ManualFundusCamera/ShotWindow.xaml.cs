@@ -83,17 +83,17 @@ namespace ManualFundusCamera
                 else
                 {
                     WebClient client = new WebClient();
-                    byte[] responseArray = client.UploadFile(Statics.urlForUploadingImage, imageFileName);
+                    byte[] responseArray = client.UploadFile(Statics.UrlForUploadingImage, imageFileName);
                     string response = Encoding.ASCII.GetString(responseArray);
-                    response = response.Replace("\"", "");
-                    string[] splittedResponse = response.Split(',');
+                    response = response.Replace(Statics.DoubleQuotationMarks, Statics.Blank);
+                    string[] splittedResponse = response.Split(Statics.Comma);
                     string id = splittedResponse[0];
                     string url = splittedResponse[1];
                     BarcodeWriter writer = new BarcodeWriter();
                     writer.Format = BarcodeFormat.QR_CODE;
                     writer.Options.Width = (int)qrImageBorder.Width;
                     writer.Options.Height = (int)qrImageBorder.Height;
-                    Bitmap bitmap = writer.Write($"http://175.112.57.221:1114/getRetinaImage?id={id}&url={url}");
+                    Bitmap bitmap = writer.Write($"{Statics.UrlForGettingImage}{Statics.QuestionMarks}{Statics.Id}{Statics.Equal}{id}{Statics.And}{Statics.Url}{Statics.Equal}{url}");
                     IntPtr hBitmap = bitmap.GetHbitmap();
                     qrImage.Source = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                 }

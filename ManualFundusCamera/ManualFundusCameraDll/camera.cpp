@@ -65,8 +65,8 @@ void initializeWindow(HWND windowHandle, HWND shotWindowHandle)
 	SetStretchBltMode(shotWindowDc, COLORONCOLOR);
 
 	bitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-	bitmapInfo.bmiHeader.biPlanes = 1;
-	bitmapInfo.bmiHeader.biBitCount = 24;
+	bitmapInfo.bmiHeader.biPlanes = BiPlanes;
+	bitmapInfo.bmiHeader.biBitCount = BiBitCount;
 	bitmapInfo.bmiHeader.biCompression = BI_RGB;
 }
 
@@ -134,7 +134,7 @@ ErrorShowCameraFrame showCameraFrame(Part part, int x, int y, int width, int hei
 /// <param name="height">지울 영역의 세로 길이</param>
 void clearImage(int x, int y, int width, int height)
 {
-	cv::Mat blackImage(height, width, CV_8UC3, cv::Scalar(0, 0, 0));
+	cv::Mat blackImage(height, width, CV_8UC3, BlackScalar);
 	showImage(blackImage, x, y, width, height, windowDc);
 }
 

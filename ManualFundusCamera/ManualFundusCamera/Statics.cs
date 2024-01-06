@@ -145,6 +145,20 @@ namespace ManualFundusCamera
         [DllImport(dllFileName)]
         extern public static int getCameraParam(Part part, VideoCaptureProperties prop);
 
-        public const string urlForUploadingImage = "http://175.112.57.221:1114/addRetinaImage";
+        public const string UrlForUploadingImage = "http://175.112.57.221:1114/addRetinaImage";
+        public const string DateTimeFormatForImageFileName = "yyyy-MM-dd_HH-mm-ss";
+        public const string JpgExt = ".jpg";
+        public const string DoubleQuotationMarks = "\"";
+        public const string Blank = "";
+        public const string UrlForGettingImage = "http://175.112.57.221:1114/getRetinaImage";
+        public const string Id = "id";
+        public const string Url = "url";
+
+        public const char Comma = ',';
+        public const char QuestionMarks = '?';
+        public const char And = '&';
+        public const char Equal = '=';
+
+        public const int SleepTimeWhenCapturing = 1000;
     }
 }

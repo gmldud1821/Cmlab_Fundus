@@ -10,6 +10,9 @@
 #endif
 
 #define NumberOfCameras 2
+#define BiPlanes 1
+#define BiBitCount 24
+#define BlackScalar cv::Scalar(0, 0, 0)
 
 enum class Part { Retina, Cornea };
 
